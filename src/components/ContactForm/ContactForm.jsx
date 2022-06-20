@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import s from './ContactForm.module.css';
+import PropTypes from 'prop-types';
 
 export default class ContactForm extends Component {
   state = {
@@ -7,6 +9,9 @@ export default class ContactForm extends Component {
     number: '',
   };
 
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   nameInputId = nanoid();
   numberInputId = nanoid();
 
@@ -28,9 +33,11 @@ export default class ContactForm extends Component {
 
   render() {
     return (
-      <form autoComplete="on" onSubmit={this.handleSubmit}>
+      <form autoComplete="on" onSubmit={this.handleSubmit} className={s.form}>
         <div>
-          <label htmlFor={this.nameInputId}>Name</label>
+          <label htmlFor={this.nameInputId} className={s.label}>
+            Name
+          </label>
           <input
             type="text"
             name="name"
@@ -40,11 +47,14 @@ export default class ContactForm extends Component {
             onChange={this.handleInputChange}
             value={this.state.name}
             id={this.nameInputId}
-            placeholder="John Smith"
+            placeholder=" Your Name"
+            className={s.input}
           />
         </div>
         <div>
-          <label htmlFor={this.numberInputId}>Phone Number</label>
+          <label htmlFor={this.numberInputId} className={s.label}>
+            Phone
+          </label>
           <input
             type="tel"
             name="number"
@@ -55,10 +65,11 @@ export default class ContactForm extends Component {
             value={this.state.number}
             id={this.numberInputId}
             placeholder=""
+            className={s.input}
           />
         </div>
 
-        <button type="submit" name="submit_button">
+        <button type="submit" name="submit_button" className={s.button}>
           Add contact
         </button>
       </form>
