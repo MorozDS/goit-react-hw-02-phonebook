@@ -44,7 +44,7 @@ export default class App extends Component {
   onChange = event => {
     const { value } = event.target;
     this.setState({
-      filter: value.trim(),
+      filter: value,
     });
   };
 
